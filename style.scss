@@ -1,0 +1,255 @@
+/*
+    ** All elements border-box
+*/
+*,
+*:before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*
+    ** Root element font size
+    ** No default margins and paddings
+*/
+html,
+body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+    **root elements display block
+*/
+html,
+body {
+    display: block;
+}
+
+/*
+    ** Body main style
+*/
+body {
+    line-height: 1.317101995;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+    background-color: #ffffff;
+}
+
+button:focus{
+    outline: 0;
+}
+
+.centered-elements{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+$pink    :   #ff29ad;
+$lemon   :   #ebde30;
+$green   :   #00ffb3;
+$blue    :   #00aeff;
+
+.content{
+    background-color: #0a0a0a;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.link{
+    position: relative;
+    display: block;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 28px;
+    cursor: pointer;
+    width: fit-content;
+    margin: 0 auto 48px;
+    z-index: 0;
+    transition: all 450ms ease;
+
+    &::after,
+    &::before{
+        content: '';
+        display: block;
+        position: absolute;
+        transition: width 540ms, opacity 300ms ease;
+    }
+}
+
+/* LINK 1 */
+.link--1{
+    padding: 0 6px;
+
+    &::before,
+    &::after{
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        height: 0.1em;
+        width: 0;
+    }
+
+    &::before{
+        left: 0;
+    }
+
+    &::after{
+        background-color: $pink;
+        right: 0;
+    }
+
+    &:hover{
+        color: $pink;
+        
+        &::before{
+            width: 60%;
+            transition: width 250ms ease;
+            background-color: $pink;
+        }
+
+        &::after{
+            width: 100%;
+            background-color: transparent;
+        }
+    }
+}
+
+/* LINK 2    */
+.link--2{
+    &::before,
+    &::after{
+        height: 0.1em;
+        bottom: -1px;
+    }
+
+    &::before{
+        width: 0;
+        background-color: $lemon;
+    }
+
+    &::after{
+        width: 100%;
+        border: 1px solid $lemon;
+        border-top: 0;
+        opacity: 0;
+    }
+
+    &:hover{
+        color: $lemon;
+
+        &::before{
+            width: 0;
+            animation: width 1500ms ease forwards;
+        }
+
+        &::after{
+            opacity: 1;
+        }
+    }
+}
+
+@keyframes width{
+    0%{
+        width: 0;
+    }
+
+    50%{
+        width: 100%;
+    }
+
+    100%{
+        width: 70%;
+    }
+}
+
+/* LINK 3 */
+.link--3{
+    height: 56px;
+    width: 164px;
+    display: grid;
+    place-items: center;
+
+    &-b-tr,
+    &-b-bl{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        &::before,
+        &::after{
+            content: '';
+            position: absolute;
+            background-color: $green;
+            transition: all 400ms ease-in-out;
+        }
+    }
+
+    &-b-tr::before{
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+    }
+
+    &-b-tr::after{
+        right: 0;
+        top: 0;
+        height: 0;
+        width: 1px;
+    }
+
+    &-b-bl::before{
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 1px;
+    }
+
+    &-b-bl::after{
+        left: 0;
+        bottom: 0;
+        height: 0;
+        width: 1px;
+    }
+
+    &:hover{
+        color: $green;
+
+        .link--3-b-tr::before,
+        .link--3-b-bl::before{
+            width: 100%;
+        }
+
+        .link--3-b-tr::after,
+        .link--3-b-bl::after{
+            height: 100%;
+        }
+    }
+}
+
+/* LINK 4 */
+.link--4{
+    &::before{
+        content: attr(data);
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        color: $blue;
+        z-index: 1;
+        overflow: hidden;
+        text-shadow: 0 0 2px $blue;
+        transition: all 480ms ease-in-out;
+    }
+  
+    &:hover::before{
+        width: 100%;
+    }
+}
